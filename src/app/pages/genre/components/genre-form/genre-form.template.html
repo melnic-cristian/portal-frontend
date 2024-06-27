@@ -1,0 +1,17 @@
+<div ng-if="vm.showModal" class="modal genre-modal">
+  <div class="modal-content">
+    <h2>{{ vm.isEditMode ? 'Edit Genre' : 'Add Genre' }}</h2>
+    <form name="genreForm" ng-submit="vm.submitForm(genreForm)" novalidate>
+      <div>
+        <input type="text" id="name" name="name" ng-model="vm.genre.name" placeholder="Name" required ng-pattern="/^[a-zA-Z\s]+$/" />
+      </div>
+      <div>
+        <textarea id="description" name="description" ng-model="vm.genre.description" placeholder="Description" required></textarea>
+      </div>
+      <div class="buttons">
+        <button class="close-btn" ng-click="vm.closeModal()" type="button">CLOSE</button>
+        <button class="save-btn" type="submit" ng-disabled="genreForm.$invalid || !genreForm.name.$valid || !genreForm.description.$valid" ng-class="{'disabled-btn': genreForm.$invalid || !genreForm.name.$valid || !genreForm.description.$valid}">{{ vm.isEditMode ? 'UPDATE' : 'SAVE' }}</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<div class="book-container" ng-controller="BookListController as mainCtrl">
+  <div class="book-tool-container">
+      <span class="total-books">Total Books: {{mainCtrl.totalBooks}}</span>
+      <button class="add-button" ng-click="mainCtrl.openBookModal()">Add</button>
+  </div>
+
+  <book-form></book-form>
+
+  <div class="book-list-container">
+      <custom-table
+          headers="['Title', 'ISBN', 'Authors']"
+          rows="mainCtrl.books"
+          on-edit="mainCtrl.editRow(row)"
+          on-delete="mainCtrl.deleteRow(row)"
+          on-books="mainCtrl.viewBooks(row)"
+          show-edit="true"
+          show-delete="true"
+          show-books="false"
+          current-page="mainCtrl.currentPage"
+          total-pages="mainCtrl.totalPages">
+      </custom-table>
+  </div>
+
+</div>

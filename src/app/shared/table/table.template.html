@@ -1,0 +1,32 @@
+<div class="table-container" ng-if="displayedRows.length > 0">
+    <table class="table" >
+        <thead>
+            <tr>
+                <th ng-repeat="header in headers">{{header}}</th>
+                <th class="actions-header">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="row in displayedRows">
+                <td ng-repeat="header in headers">
+                    <span ng-if="header === 'Authors'">{{getAuthors(row.authors)}}</span>
+                    <span ng-if="header !== 'Authors'">{{row[header.toLowerCase()]}}</span>
+                </td>
+                <td class="action-buttons">
+                    <button ng-if="showEdit !== 'false'" class="d-btn btn-add" ng-click="onEdit({row: row})">Edit</button>
+                    <button ng-if="showDelete !== 'false'" class="d-btn btn-delete" ng-click="onDelete({row: row})">Delete</button>
+                    <button ng-if="showBooks !== 'false'" class="d-btn btn-view" ng-click="onBooks({row: row})">Books</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="table-pagination" ng-if="totalPages > 1">
+    <button ng-click="prevPage()" ng-disabled="currentPage === 1">Previous</button>
+    <span class="pagination-info">{{currentPage}} / {{totalPages}}</span>
+    <button ng-click="nextPage()" ng-disabled="currentPage === totalPages">Next</button>
+</div>
+
+<div ng-if="displayedRows.length === 0" class="no-items-message">
+    Not exists any records
+</div>

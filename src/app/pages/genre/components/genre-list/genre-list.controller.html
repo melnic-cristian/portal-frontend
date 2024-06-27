@@ -1,0 +1,22 @@
+<div class="genre-container" ng-controller="GenreListController as mainCtrl">
+  <div class="genre-tool-container">
+      <span class="total-genres">Total Genres: {{mainCtrl.totalGenres}}</span>
+      <button class="add-button" ng-click="mainCtrl.openGenreModal()">Add</button>
+  </div>
+  
+  <genre-form></genre-form>
+
+  <div class="genre-list-container">
+    <custom-table
+      headers="['Name', 'Description']"
+      rows="mainCtrl.genres"
+      on-edit="mainCtrl.editRow(row)"
+      on-delete="mainCtrl.deleteRow(row)"
+      show-edit="true"
+      show-delete="true"
+      show-books="false"
+      current-page="mainCtrl.currentPage"
+      total-pages="mainCtrl.totalPages">
+    </custom-table>
+  </div>
+</div>

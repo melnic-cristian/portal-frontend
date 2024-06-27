@@ -1,0 +1,23 @@
+<div class="author-container" ng-controller="AuthorListController as mainCtrl">
+    <div class="author-tool-container">
+        <span class="total-authors">Total Authors: {{mainCtrl.totalAuthors}}</span>
+        <button class="add-button" ng-click="mainCtrl.openAuthorModal()">Add</button>
+    </div>
+    <author-form></author-form>
+    <view-books></view-books>
+
+    <div class="author-list-container">
+        <custom-table
+          headers="['Name', 'Biography']"
+          rows="mainCtrl.authors"
+          on-edit="mainCtrl.editRow(row)"
+          on-delete="mainCtrl.deleteRow(row)"
+          on-books="mainCtrl.viewBooks(row)"
+          show-edit="true"
+          show-delete="true"
+          show-books="true"
+          current-page="mainCtrl.currentPage"
+          total-pages="mainCtrl.totalPages">
+      </custom-table>
+    </div>
+</div>

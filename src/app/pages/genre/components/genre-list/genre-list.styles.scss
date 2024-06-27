@@ -1,0 +1,17 @@
+@import 'src/styles/list.scss';
+
+.genre-container {
+    @extend .flex-container;
+}
+
+.genre-list-container {
+    @extend .list-container;
+}
+
+.genre-tool-container {
+    @extend .tool-container;
+}
+
+.total-genres {
+    @extend .total-items;
+}

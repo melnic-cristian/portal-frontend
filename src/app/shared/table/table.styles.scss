@@ -1,0 +1,126 @@
+
+.table-container {
+  display: flex;
+  justify-content: center;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.table th, .table td {
+  padding: 12px;
+  text-align: start;
+  vertical-align: middle;
+}
+
+.table th {
+  background-color: #558089;
+  opacity: 0.58;
+  color: #FFFFFF;
+  height: 50px;
+  font-size: 23px;
+  font-weight: 400;
+}
+
+.table td {
+  height: 65px;
+  font-size: 17px;
+}
+
+.table th:first-child, .table td:first-child {
+  width: 250px;
+  padding-right: 20px;
+}
+
+.table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 30px !important;
+}
+
+.action-buttons button {
+  margin: 0; 
+  padding: 0;
+}
+
+.actions-header {
+  text-align: center !important;
+  width: 90px;
+  margin: 0px !important;
+  padding-right: 33px !important;
+}
+
+.d-btn {
+  height: 32px;
+  width: 65px;
+  border: none;
+  border-radius: 0;
+  font-size: 15px;
+  cursor: pointer;
+  margin: 0 2px;
+}
+
+.btn-add {
+  background-color: #6085BC;
+  color: #000000;
+  }
+
+.btn-delete {
+  background-color: #E38E8E;
+  color: #000000;
+  }
+
+  .btn-view {
+    background-color: #8EE397;
+    color: #000000;
+    }
+
+.table-pagination {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.table-pagination button {
+  padding: 4px 20px;
+  border: none;
+  height: 28px;
+  outline: none;
+  font-size: 14px;
+  background-color: #E4E4E4;
+  cursor: pointer;
+}
+
+.pagination-info{
+   padding: 4px 10px;
+   font-size: 13px;
+}
+
+.no-items-message {
+  text-align: center;
+  padding: 20px;
+  background-color: #F5F5F5;
+  border: 1px solid #000000;
+  border-radius: 3px;
+  font-size: 1.2em;
+  display: flex;
+  color: #A7AAAB;
+}
+
+.table-pagination button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}

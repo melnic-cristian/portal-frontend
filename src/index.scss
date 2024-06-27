@@ -1,0 +1,15 @@
+/**
+ * Vendor styles go here
+ **/
+
+ @import '~bootstrap/dist/css/bootstrap.css';
+ @import 'src/styles/buttons.scss';
+ @import 'src/styles/modal.scss';
+
+/**
+ * Global styles go here
+ **/
+
+ body {
+     background-color: #EEE;
+ }

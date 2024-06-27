@@ -1,0 +1,15 @@
+<div ng-if="vm.showModal" class="modal view-books-modal">
+  <div class="modal-content">
+    <h2>Author: {{vm.author.firstName}} {{vm.author.lastName}}</h2>
+    <h4>List of books:</h4>
+
+    <div class="book-list">
+      <div ng-if="vm.books.length === 0" class="no-books">The author does not have any books.</div>
+      <div class="book-item" ng-repeat="book in vm.books">{{book.title}}</div>
+    </div>
+
+    <div class="buttons-container">
+      <button class="close-btn" ng-click="vm.closeModal()" type="button">CLOSE</button>
+    </div>
+  </div>
+</div>

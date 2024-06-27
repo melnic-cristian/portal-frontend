@@ -1,0 +1,53 @@
+.multi-select {
+  position: relative;
+  user-select: none;
+}
+
+.select-box {
+  display: flex;
+  justify-content: space-between;
+  width: 400px;
+  padding: 8px;
+  background: #F4F4F4;
+  border: 1px solid #BEBEBE;
+  border-radius: 4px;
+
+  span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.dropdown {
+  position: absolute;
+  width: 400px;
+  background: #F4F4F4;
+  border: 1px solid #BEBEBE;
+  border-radius: 4px;
+  z-index: 1;
+  max-height: 200px; 
+  overflow-y: auto; 
+}
+
+.dropdown-item {
+  padding: 10px;
+  cursor: pointer;
+
+  input[type="checkbox"] {
+    margin: 0 5px;
+  }  
+}
+
+.dropdown-item:hover {
+  background: #dad9d9;
+  color: black;
+}
+
+.arrow {
+  margin-left: 10px;
+}
+
+.default-text {
+  color: #889699;  
+}

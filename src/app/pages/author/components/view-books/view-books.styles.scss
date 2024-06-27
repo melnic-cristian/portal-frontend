@@ -1,0 +1,44 @@
+.view-books-modal {
+  .modal-content {
+    width: 1300px;
+    height: 500px;
+  }
+
+  .book-list {
+    flex: 1;
+    overflow-y: auto;
+    margin-top: 20px;
+    max-height: 400px;
+  }
+
+  .book-item {
+    padding: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #BEBEBE;
+    background: #F5F5F5;
+    font-size: 15px;
+  }
+
+  h2 {
+    display: flex;
+    justify-content: flex-end;
+    color: #2a7b90;
+  }
+
+  h4 {
+    color: #2a7b90;
+  }
+
+  .buttons-container{
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .no-books {
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #BEBEBE;
+    background: #F5F5F5;
+    font-size: 19px;
+  }
+}

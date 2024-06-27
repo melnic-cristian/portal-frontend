@@ -1,0 +1,18 @@
+@import 'src/styles/list.scss';
+
+.author-container {
+  @extend .flex-container;
+}
+
+.author-list-container {
+  @extend .list-container;
+}
+
+.author-tool-container {
+  @extend .tool-container;
+}
+
+.total-authors {
+  @extend .total-items;
+}
+

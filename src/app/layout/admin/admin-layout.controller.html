@@ -1,0 +1,15 @@
+<div class="admin-layout">
+    <div class="sidebar">
+        <div class="sidebar-title">PORTAL</div>
+        <button class="sidebar-button" ui-sref="admin.book" ui-sref-active="active">Books</button>
+        <button class="sidebar-button" ui-sref="admin.author" ui-sref-active="active">Authors</button>
+        <button class="sidebar-button" ui-sref="admin.genre" ui-sref-active="active">Genres</button>
+    </div>
+
+    <div class="main-container">
+        <div class="topbar">
+            <div class="topbar-title">{{ vm.pageTitle }}</div>
+        </div>
+        <div ui-view></div>
+    </div>
+</div>

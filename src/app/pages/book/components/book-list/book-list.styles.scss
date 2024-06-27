@@ -1,0 +1,17 @@
+@import 'src/styles/list.scss';
+
+.book-container {
+    @extend .flex-container;
+}
+
+.book-list-container {
+    @extend .list-container;
+}
+
+.book-tool-container {
+    @extend .tool-container;
+}
+
+.total-books {
+    @extend .total-items;
+}

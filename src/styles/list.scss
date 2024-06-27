@@ -1,0 +1,27 @@
+.flex-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin: 18px;
+    border: 15px solid #186879;
+    background-color: #FFFFFF;
+    height: calc(100vh - 87px - 18px - 18px);
+    overflow: auto;
+}
+
+.list-container {
+    margin: 50px;
+}
+
+.tool-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 50px;
+    margin-bottom: 10px;
+}
+
+.total-items {
+    font-size: 26px;
+    color: #186879;
+}
