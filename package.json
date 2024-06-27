@@ -12,7 +12,7 @@
     "clean:dev": "rimraf .tmp",
     "clean:prd": "rimraf public",
     "start": "npm run serve:dev",
-    "serve:dev": "NODE_OPTIONS=--openssl-legacy-provider webpack-dev-server --config webpack-dev.config.js",
+    "serve:dev": "webpack-dev-server --config webpack-dev.config.js",
     "preserve:prd": "npm run build:prd",
     "serve:prd": "http-server",
     "test": "karma start karma.config.js",
