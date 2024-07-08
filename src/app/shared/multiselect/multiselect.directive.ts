@@ -10,10 +10,11 @@ export function multiSelectDropdownDirective() {
         controllerAs: 'vm',
         bindToController: true,
         scope: {
-            items: '=', 
-            selectedItems: '=', 
-            defaultText: '@', 
-            singleSelect: '@' 
+            items: '=',
+            selectedItems: '=',
+            defaultText: '@',
+            singleSelect: '@',
+            required: '@'
           },
     };
 }

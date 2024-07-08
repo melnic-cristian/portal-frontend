@@ -22,12 +22,14 @@ export const BookFormController = ['$scope', 'AuthorService', 'BookService', 'Ge
                     }));
                 } else {
                     console.error('Invalid author data', response.authorsList);
+                    vm.authors = []; 
                 }
             }).catch(function(error) {
                 console.error('Error fetching authors:', error);
+                vm.authors = [];
             });
         }
-
+    
         if (vm.genres.length === 0) {
             GenreService.getGenresList().then(function(response) {
                 if (response.genresList && Array.isArray(response.genresList)) {
@@ -37,12 +39,15 @@ export const BookFormController = ['$scope', 'AuthorService', 'BookService', 'Ge
                     }));
                 } else {
                     console.error('Invalid genre data', response.genresList);
+                    vm.genres = []; 
                 }
             }).catch(function(error) {
                 console.error('Error fetching genres:', error);
+                vm.genres = []; 
             });
         }
     }
+    
 
     function resetForm() {
         vm.book = {};
@@ -67,6 +72,7 @@ export const BookFormController = ['$scope', 'AuthorService', 'BookService', 'Ge
         vm.bookId = book.id;
         vm.book.title = book.title;
         vm.book.isbn = book.isbn;
+        vm.book.summary = book.summary;
         vm.book.imageLink = book.imageLink;
         vm.selectedAuthors = book.authors.map(author => ({
             id: author.id,
@@ -100,16 +106,6 @@ export const BookFormController = ['$scope', 'AuthorService', 'BookService', 'Ge
                 console.error('Error adding book:', error);
             });
         }
-    };
-    
-    vm.isFormInvalid = function(bookForm) {
-        return bookForm.$invalid || 
-               !bookForm.title.$valid || 
-               !bookForm.isbn.$valid || 
-               !bookForm.publicDate.$valid || 
-               !bookForm.imageLink.$valid || 
-               vm.selectedAuthors.length === 0 || 
-               vm.selectedGenres.length === 0;
     };
 
     $scope.$on('$destroy', function() {

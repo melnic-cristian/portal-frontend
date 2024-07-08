@@ -2,10 +2,14 @@
 export const BookService = ['$http', function($http) {
     const API_URL = process.env.API_URL + '/books';
 
-    this.getBooks = function(page, itemsPerPage) {
+    this.getBooks = function(page, itemsPerPage, query = '') {
         const offset = (page - 1) * itemsPerPage;
         return $http.get(API_URL, {
-            params: { max: itemsPerPage, offset: offset }
+            params: {
+                max: itemsPerPage,
+                offset: offset,
+                query: query
+            }
         }).then(response => {
             return {
                 books: response.data.books,

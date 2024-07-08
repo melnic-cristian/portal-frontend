@@ -2,28 +2,68 @@
   <div class="modal-content">
     <h2>{{ vm.editMode ? 'Edit Book' : 'Add Book' }}</h2>
     <form name="bookForm" ng-submit="vm.submitForm()" novalidate>
-      <input type="text" ng-model="vm.book.title" placeholder="Title" required ng-minlength="1" ng-maxlength="255" name="title">
+
       
-      <input type="text" ng-model="vm.book.isbn" placeholder="ISBN" required ng-pattern="/^\d{10}(\d{3})?$/" name="isbn">
-      
-      <input type="text" ng-model="vm.book.imageLink" placeholder="Image Link" name="imageLink" ng-pattern="/^(https?:\/\/)?([a-z\d-]+\.)+[a-z]{2,6}\/?([^\s]*)?$/i">
-      
-      <input type="date" ng-model="vm.book.publicDate" placeholder="Published Date" required name="publicDate">
-      
-      <div class="multiselect">
-        <multi-select-dropdown items="vm.authors" selected-items="vm.selectedAuthors" default-text="Authors"></multi-select-dropdown>
+      <div class="form-group" ng-class="{'has-error': bookForm.title.$touched && bookForm.title.$invalid}">
+        <label for="title">Title <span class="required">*</span></label>
+        <div>
+          <input type="text" ng-model="vm.book.title" placeholder="Title" required ng-minlength="2" ng-maxlength="255" name="title" id="title">
+          <div class="error-message" ng-if="bookForm.title.$touched && bookForm.title.$invalid">
+            <span ng-if="bookForm.title.$error.required">Title is required.</span>
+            <span ng-if="bookForm.title.$error.minlength">Title is too short.</span>
+            <span ng-if="bookForm.title.$error.maxlength">Title is too long.</span>
+          </div>
+        </div>
       </div>
       
-      <div class="multiselect">
+      <div class="form-group">
+        <label for="isbn">ISBN</label>
+        <div>
+          <input type="text" ng-model="vm.book.isbn" placeholder="ISBN" ng-pattern="/^\d{10}(\d{3})?$/" name="isbn" id="isbn">
+          <div class="error-message" ng-if="bookForm.isbn.$invalid">
+            <span ng-if="bookForm.isbn.$error.pattern">Invalid ISBN format.</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="form-group" ng-class="{'has-error': bookForm.imageLink.$touched && bookForm.imageLink.$invalid}">
+        <label for="imageLink">Image Link</label>
+        <input type="text" ng-model="vm.book.imageLink" placeholder="Image Link" name="imageLink" ng-pattern="/^(https?:\/\/)?([a-z\d-]+\.)+[a-z]{2,6}\/?([^\s]*)?$/i" id="imageLink">
+        <div class="error-message" ng-if="bookForm.imageLink.$touched && bookForm.imageLink.$invalid">
+          <span ng-if="bookForm.imageLink.$error.pattern">Invalid URL format.</span>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="publicDate">Published Date </label>
+        <input type="date" ng-model="vm.book.publicDate" placeholder="Published Date" name="publicDate" id="publicDate">
+      </div>
+      
+      <div class="form-group multiselect">
+        <label>Authors <span class="required">*</span></label>
+        <multi-select-dropdown items="vm.authors" selected-items="vm.selectedAuthors" default-text="Authors" required="true"></multi-select-dropdown>
+      </div>
+      
+      <div class="form-group multiselect">
+        <label>Genre</label>
         <multi-select-dropdown items="vm.genres" selected-items="vm.selectedGenres" default-text="Genre" single-select="true"></multi-select-dropdown>
+      </div>
+
+      <div class="form-group" ng-class="{'has-error': bookForm.summary.$touched && bookForm.summary.$invalid}">
+        <label>Summary <span class="required">*</span></label>
+        <div>
+          <textarea id="summary" name="summary" ng-model="vm.book.summary" placeholder="Summary" required></textarea>
+          <div class="error-message" ng-if="bookForm.summary.$touched && bookForm.summary.$invalid">
+            <span ng-if="bookForm.summary.$error.required">Summary is required.</span>
+          </div>
+        </div>
       </div>
       
       <div class="buttons">
         <button class="close-btn" ng-click="vm.closeModal()" type="button">CLOSE</button>
-        <button class="save-btn" type="submit" 
-                ng-disabled="vm.isFormInvalid(bookForm)" 
-                ng-class="{'disabled-btn': vm.isFormInvalid(bookForm)}">
-          {{ vm.editMode ? 'UPDATE' : 'SAVE' }}
+        <button class="save-btn" type="submit" ng-disabled="bookForm.$invalid" 
+            ng-class="{'disabled-btn': bookForm.$invalid}">
+            {{ vm.editMode ? 'UPDATE' : 'SAVE' }}
         </button>
       </div>
     </form>

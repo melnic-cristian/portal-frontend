@@ -2,16 +2,30 @@
   <div class="modal-content">
     <h2>{{ vm.isEditMode ? 'Edit Genre' : 'Add Genre' }}</h2>
     <form name="genreForm" ng-submit="vm.submitForm(genreForm)" novalidate>
-      <div>
-        <input type="text" id="name" name="name" ng-model="vm.genre.name" placeholder="Name" required ng-pattern="/^[a-zA-Z\s]+$/" />
+      <div class="form-group" ng-class="{'has-error': genreForm.name.$touched && genreForm.name.$invalid}">
+        <label for="name">Name  <span class="required">*</span></label>
+        <div>
+          <input type="text" id="name" name="name" ng-model="vm.genre.name" placeholder="Name" required ng-pattern="/^[a-zA-Z\s]+$/" />
+          <div ng-messages="genreForm.name.$error" ng-if="genreForm.name.$touched">
+            <div ng-message="required" class="error-message" ng-if="genreForm.name.$error.required">Name is required.</div>
+            <div ng-message="pattern" class="error-message" ng-if="genreForm.name.$error.pattern">Name can only contain letters and spaces.</div>
+          </div>
+        </div>
       </div>
-      <div>
-        <textarea id="description" name="description" ng-model="vm.genre.description" placeholder="Description" required></textarea>
+      <div class="form-group" ng-class="{'has-error': genreForm.description.$touched && genreForm.description.$invalid}">
+        <label for="description">Description  <span class="required">*</span></label>
+        <div>
+          <textarea id="description" name="description" ng-model="vm.genre.description" placeholder="Description" required></textarea>
+          <div ng-messages="genreForm.description.$error" ng-if="genreForm.description.$touched">
+            <div ng-message="required" class="error-message" ng-if="genreForm.description.$error.required">Description is required.</div>
+          </div>
+        </div>
       </div>
       <div class="buttons">
         <button class="close-btn" ng-click="vm.closeModal()" type="button">CLOSE</button>
-        <button class="save-btn" type="submit" ng-disabled="genreForm.$invalid || !genreForm.name.$valid || !genreForm.description.$valid" ng-class="{'disabled-btn': genreForm.$invalid || !genreForm.name.$valid || !genreForm.description.$valid}">{{ vm.isEditMode ? 'UPDATE' : 'SAVE' }}</button>
+        <button class="save-btn" type="submit" ng-disabled="genreForm.$invalid" ng-class="{'disabled-btn': genreForm.$invalid}">{{ vm.isEditMode ? 'UPDATE' : 'SAVE' }}</button>
       </div>
     </form>
   </div>
 </div>
+

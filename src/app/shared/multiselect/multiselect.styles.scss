@@ -1,6 +1,21 @@
 .multi-select {
   position: relative;
   user-select: none;
+
+
+  .error-message {
+    color: #e74c3c;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+  
+  .has-error {
+    border-color: #e74c3c;
+  }
+  
+  .arrow {
+    margin-left: 10px;
+  }
 }
 
 .select-box {
@@ -11,11 +26,16 @@
   background: #F4F4F4;
   border: 1px solid #BEBEBE;
   border-radius: 4px;
+  cursor: pointer;
 
   span {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+
+    &.default-text {
+      color: #889699;  
+    }
   }
 }
 
@@ -26,28 +46,30 @@
   border: 1px solid #BEBEBE;
   border-radius: 4px;
   z-index: 1;
-  max-height: 200px; 
-  overflow-y: auto; 
-}
+  max-height: 200px;
+  overflow-y: auto;
 
-.dropdown-item {
-  padding: 10px;
-  cursor: pointer;
+  .dropdown-item {
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
 
-  input[type="checkbox"] {
-    margin: 0 5px;
-  }  
-}
+    &:hover {
+      background: #dad9d9;
+      color: black;
+    }
 
-.dropdown-item:hover {
-  background: #dad9d9;
-  color: black;
-}
+    input[type="checkbox"] {
+      margin: 0 5px 0 0;
+    }
+  }
 
-.arrow {
-  margin-left: 10px;
-}
-
-.default-text {
-  color: #889699;  
+  .search-input {
+    width: calc(100% - 20px) !important;
+    margin: 10px;
+    padding: 8px;
+    border: 1px solid #BEBEBE;
+    border-radius: 4px;
+  }
 }

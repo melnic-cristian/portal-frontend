@@ -5,7 +5,9 @@ export const MultiSelectController = ['$scope', '$element', '$timeout', function
     vm.dropdownOpen = false;
     vm.selectedItems = vm.selectedItems || [];
     vm.selectedNamesCache = '';
-    vm.singleSelect = vm.singleSelect || false; 
+    vm.singleSelect = vm.singleSelect || false;
+    vm.searchQuery = '';
+    vm.touched = false;
 
     vm.toggleDropdown = function() {
         vm.dropdownOpen = !vm.dropdownOpen;
@@ -13,18 +15,22 @@ export const MultiSelectController = ['$scope', '$element', '$timeout', function
 
     vm.toggleSelection = function(event, item) {
         event.stopPropagation();
-    
+
+        if (!vm.touched) {
+            vm.touched = true;
+        }
+        
         if (vm.singleSelect) {
-            vm.selectedItems = [item]; 
+            vm.selectedItems = [item];
         } else {
             if (!vm.selectedItems) {
                 vm.selectedItems = [];
             }
             let idx = vm.selectedItems.findIndex(selectedItem => selectedItem.id === item.id);
             if (idx > -1) {
-                vm.selectedItems.splice(idx, 1);  
+                vm.selectedItems.splice(idx, 1);
             } else {
-                vm.selectedItems.push(item);  
+                vm.selectedItems.push(item);
             }
         }
         updateSelectedNames();
@@ -57,6 +63,9 @@ export const MultiSelectController = ['$scope', '$element', '$timeout', function
         if (!$element[0].contains(event.target)) {
             $timeout(function() {
                 vm.dropdownOpen = false;
+                if (!vm.touched) {
+                    vm.touched = true;
+                }
             });
         }
     }

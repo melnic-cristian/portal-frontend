@@ -1,0 +1,12 @@
+<div class="confirmation-popup">
+    <div class="popup-content">
+        <p>{{ vm.message || 'Are you sure you want to proceed?' }}</p>
+
+        <div class="error-message" ng-if="vm.errorMessage">
+            {{ vm.errorMessage }}
+        </div>
+
+        <button class="save-btn" ng-click="vm.onConfirm()">Yes</button>
+        <button class="close-btn" ng-click="vm.onCancel()">No</button>
+    </div>
+</div>

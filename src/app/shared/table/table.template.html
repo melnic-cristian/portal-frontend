@@ -10,8 +10,13 @@
             <tr ng-repeat="row in displayedRows">
                 <td ng-repeat="header in headers">
                     <span ng-if="header === 'Authors'">{{getAuthors(row.authors)}}</span>
-                    <span ng-if="header !== 'Authors'">{{row[header.toLowerCase()]}}</span>
+                    <div ng-if="header === 'Title'" class="title-image-container">
+                        <img ng-src="{{row.imageLink}}" class="book-image" />
+                        <span class="book-title">{{row.title}}</span>
+                    </div>
+                    <span ng-if="header !== 'Authors' && header !== 'Title'">{{row[header.toLowerCase()]}}</span>
                 </td>
+                
                 <td class="action-buttons">
                     <button ng-if="showEdit !== 'false'" class="d-btn btn-add" ng-click="onEdit({row: row})">Edit</button>
                     <button ng-if="showDelete !== 'false'" class="d-btn btn-delete" ng-click="onDelete({row: row})">Delete</button>

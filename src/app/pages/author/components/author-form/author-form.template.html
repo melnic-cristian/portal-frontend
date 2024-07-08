@@ -2,18 +2,38 @@
   <div class="modal-content">
     <h2>{{ vm.isEdit ? 'Edit Author' : 'Add Author' }}</h2>
     <form name="authorForm" ng-submit="vm.submitForm(authorForm)" novalidate>
-      <div>
-        <input type="text" id="lastName" name="lastName" ng-model="vm.author.lastName" placeholder="Last Name" required ng-pattern="/^[a-zA-Z]+$/" />
+      <div class="form-group" ng-class="{'has-error': authorForm.lastName.$touched && authorForm.lastName.$invalid}">
+        <label for="lastName">Last Name <span class="required">*</span></label>
+        <div>
+          <input type="text" id="lastName" name="lastName" ng-model="vm.author.lastName" placeholder="Last Name" required ng-pattern="/^[a-zA-Z]+$/" />
+          <div ng-messages="authorForm.lastName.$error" ng-if="authorForm.lastName.$touched">
+            <div ng-message="required" class="error-message" ng-if="authorForm.lastName.$error.required">Last Name is required.</div>
+            <div ng-message="pattern" class="error-message" ng-if="authorForm.lastName.$error.pattern">Last Name can only contain letters.</div>
+          </div>
+        </div>
       </div>
-      <div>
-        <input type="text" id="firstName" name="firstName" ng-model="vm.author.firstName" placeholder="First Name" required ng-pattern="/^[a-zA-Z]+$/" />
+      <div class="form-group" ng-class="{'has-error': authorForm.firstName.$touched && authorForm.firstName.$invalid}">
+        <label for="firstName">First Name <span class="required">*</span></label>
+        <div>
+          <input type="text" id="firstName" name="firstName" ng-model="vm.author.firstName" placeholder="First Name" required ng-pattern="/^[a-zA-Z]+$/" />
+          <div ng-messages="authorForm.firstName.$error" ng-if="authorForm.firstName.$touched">
+            <div ng-message="required" class="error-message" ng-if="authorForm.firstName.$error.required">First Name is required.</div>
+            <div ng-message="pattern" class="error-message" ng-if="authorForm.firstName.$error.pattern">First Name can only contain letters.</div>
+          </div>
+        </div>
       </div>
-      <div>
-        <textarea id="biography" name="biography" ng-model="vm.author.biography" placeholder="Biography" required></textarea>
+      <div class="form-group" ng-class="{'has-error': authorForm.biography.$touched && authorForm.biography.$invalid}">
+        <label for="biography">Biography <span class="required">*</span></label>
+        <div>
+          <textarea id="biography" name="biography" ng-model="vm.author.biography" placeholder="Biography" required></textarea>
+          <div ng-messages="authorForm.biography.$error" ng-if="authorForm.biography.$touched">
+            <div ng-message="required" class="error-message" ng-if="authorForm.biography.$error.required">Biography is required.</div>
+          </div>
+        </div>
       </div>
       <div class="buttons">
         <button class="close-btn" ng-click="vm.closeModal()" type="button">CLOSE</button>
-        <button class="save-btn" type="submit" ng-disabled="authorForm.$invalid || !authorForm.lastName.$valid || !authorForm.firstName.$valid" ng-class="{'disabled-btn': authorForm.$invalid || !authorForm.lastName.$valid || !authorForm.firstName.$valid}">SAVE</button>
+        <button class="save-btn" type="submit" ng-disabled="authorForm.$invalid" ng-class="{'disabled-btn': authorForm.$invalid}">{{ vm.isEdit ? 'UPDATE' : 'SAVE' }}</button>
       </div>
     </form>
   </div>

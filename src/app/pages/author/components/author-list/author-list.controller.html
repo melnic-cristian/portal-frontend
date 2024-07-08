@@ -20,4 +20,13 @@
           total-pages="mainCtrl.totalPages">
       </custom-table>
     </div>
+
+    <div ng-if="mainCtrl.showConfirmationPopup">
+        <confirmation-popup 
+          message="Are you sure you want to delete this author?"
+          error-message="mainCtrl.errorMessage"
+          on-confirm="mainCtrl.confirmDelete()" 
+          on-cancel="mainCtrl.cancelDelete()">
+        </confirmation-popup>
+      </div>
 </div>

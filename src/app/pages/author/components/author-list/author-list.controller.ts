@@ -7,6 +7,9 @@ export const AuthorListController = ['$scope', 'AuthorService', function($scope,
     vm.currentPage = 1;
     vm.itemsPerPage = 5;
     vm.totalPages = 1;
+    vm.showConfirmationPopup = false;
+    vm.authorToDelete = null;
+    vm.errorMessage = null; 
 
     vm.openAuthorModal = function() {
         $scope.$broadcast('openAuthorModal');
@@ -17,11 +20,26 @@ export const AuthorListController = ['$scope', 'AuthorService', function($scope,
     };
 
     vm.deleteRow = function(row) {
-        AuthorService.deleteAuthor(row.id).then(() => {
+        vm.authorToDelete = row;
+        vm.showConfirmationPopup = true;
+    };
+
+    vm.confirmDelete = function() {
+        AuthorService.deleteAuthor(vm.authorToDelete.id).then(() => {
             vm.loadAuthors(vm.currentPage);
+            vm.showConfirmationPopup = false;
+            vm.authorToDelete = null;
+            vm.errorMessage = null; 
         }).catch(error => {
             console.error('Failed to delete author:', error);
+            vm.errorMessage = error.data.message || 'Failed to delete author';
         });
+    };
+
+    vm.cancelDelete = function() {
+        vm.showConfirmationPopup = false;
+        vm.authorToDelete = null;
+        vm.errorMessage = null; 
     };
 
     vm.viewBooks = function(row) {

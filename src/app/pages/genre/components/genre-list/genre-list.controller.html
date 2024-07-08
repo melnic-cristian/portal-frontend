@@ -1,6 +1,7 @@
 <div class="genre-container" ng-controller="GenreListController as mainCtrl">
   <div class="genre-tool-container">
-      <span class="total-genres">Total Genres: {{mainCtrl.totalGenres}}</span>
+      <span class="total-genres">Total Genres: {{mainCtrl.showConfirmationPopup}}
+      </span>
       <button class="add-button" ng-click="mainCtrl.openGenreModal()">Add</button>
   </div>
   
@@ -19,4 +20,16 @@
       total-pages="mainCtrl.totalPages">
     </custom-table>
   </div>
+
+
+ <div ng-if="mainCtrl.showConfirmationPopup">
+   <confirmation-popup 
+    message="Are you sure you want to delete this genre?"
+    error-message="mainCtrl.errorMessage"
+    on-confirm="mainCtrl.confirmDelete()" 
+    on-cancel="mainCtrl.cancelDelete()">
+    </confirmation-popup>
+ </div>
 </div>
+
+

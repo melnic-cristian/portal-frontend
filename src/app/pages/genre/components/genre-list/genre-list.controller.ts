@@ -7,6 +7,10 @@ export const GenreListController = ['$scope', 'GenreService', function($scope, G
     vm.currentPage = 1;
     vm.itemsPerPage = 5;
     vm.totalPages = 1;
+    vm.showModal = false;
+    vm.showConfirmationPopup = false;
+    vm.genreToDelete = null;
+    vm.errorMessage = null;
 
     vm.openGenreModal = function(genre) {
         $scope.$broadcast('openGenreModal', genre);
@@ -16,12 +20,28 @@ export const GenreListController = ['$scope', 'GenreService', function($scope, G
         vm.openGenreModal(row);
     };
 
-    vm.deleteRow = function(row) {
-        GenreService.deleteGenre(row.id).then(() => {
+    vm.confirmDelete = function() {
+        GenreService.deleteGenre(vm.genreToDelete.id).then(() => {
             vm.loadGenres(vm.currentPage);
+            vm.showConfirmationPopup = false;
+            vm.genreToDelete = null;
+            vm.errorMessage = null; 
         }).catch(error => {
             console.error('Failed to delete genre:', error);
+            vm.errorMessage = error.data.message || 'Failed to delete genre';
         });
+    };
+    
+
+    vm.cancelDelete = function() {
+        vm.showConfirmationPopup = false;
+        vm.genreToDelete = null;
+        vm.errorMessage = null; 
+    };
+
+    vm.deleteRow = function(row) {
+        vm.genreToDelete = row;
+        vm.showConfirmationPopup = true;
     };
 
     vm.loadGenres = function(page) {
@@ -53,7 +73,7 @@ export const GenreListController = ['$scope', 'GenreService', function($scope, G
 
     $scope.$on('loadGenres', function(event, genre) {
         vm.loadGenres(vm.currentPage);
-    })
+    });
 
     vm.loadGenres(vm.currentPage);
 }];

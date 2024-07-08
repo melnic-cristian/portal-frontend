@@ -1,15 +1,21 @@
 <div class="multi-select">
-  <div class="select-box" ng-click="vm.toggleDropdown()">
+  <div class="select-box" ng-click="vm.toggleDropdown()" ng-class="{'has-error': vm.required && vm.touched && !vm.selectedItems.length}">
     <span ng-class="{'default-text': !vm.selectedNamesCache}">{{ vm.selectedNamesCache || vm.defaultText }}</span>
   </div>
-  <div class="dropdown" ng-show="vm.dropdownOpen">
-      <div ng-if="!vm.items || vm.items.length === 0" class="dropdown-item" ng-disabled="true">
-          No options
-      </div>
-      <div class="dropdown-item" 
-           ng-repeat="item in vm.items" 
-           ng-click="vm.toggleSelection($event, item)">
-          <input type="checkbox" ng-if="!vm.singleSelect" ng-checked="vm.isSelected(item)" /> {{ item.name }}
-      </div>
+  <div class="dropdown" ng-if="vm.dropdownOpen">
+    <div ng-if="!vm.items || vm.items.length === 0" class="dropdown-item" ng-disabled="true">
+      No options
+    </div>
+    <div ng-if="vm.items.length > 5">
+      <input type="text" ng-model="vm.searchQuery" placeholder="Search..." class="search-input" />
+    </div>
+    <div class="dropdown-item" 
+         ng-repeat="item in vm.items | filter:vm.searchQuery" 
+         ng-click="vm.toggleSelection($event, item)">
+      <input type="checkbox" ng-if="!vm.singleSelect" ng-checked="vm.isSelected(item)" /> {{ item.name }}
+    </div>
+  </div>
+  <div class="error-message" ng-if="vm.required && vm.touched && !vm.selectedItems.length">
+    <span>At least one item is required.</span>
   </div>
 </div>
