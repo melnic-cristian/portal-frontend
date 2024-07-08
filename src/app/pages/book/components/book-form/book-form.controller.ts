@@ -53,6 +53,8 @@ export const BookFormController = ['$scope', 'AuthorService', 'BookService', 'Ge
         vm.book = {};
         vm.selectedAuthors = [];
         vm.selectedGenres = [];
+        vm.authors = [];
+        vm.genres = [];
     }
 
     $scope.$on('openBookModal', function(event, book) {
@@ -84,6 +86,7 @@ export const BookFormController = ['$scope', 'AuthorService', 'BookService', 'Ge
 
     vm.closeModal = function() {
         vm.showModal = false;
+        resetForm();
     };
 
     vm.submitForm = function() {
