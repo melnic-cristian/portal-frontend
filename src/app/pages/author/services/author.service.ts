@@ -19,7 +19,7 @@ export const AuthorService = ['$http', function($http) {
     this.getAuthorsList = function() {
         return $http.get(API_URL + '/list').then(response => {
             return {
-                authorsList: response.data,
+                authorsList: response.data.authorsList,
             };
         }).catch(error => {
             console.error('Error fetching authors list:', error);

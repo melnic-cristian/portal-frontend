@@ -19,7 +19,7 @@ export const GenreService = ['$http', function($http) {
     this.getGenresList = function() {
         return $http.get(API_URL + '/list').then(response => {
             return {
-                genresList: response.data,
+                genresList: response.data.genresList,
             };
         }).catch(error => {
             console.error('Error fetching genres list:', error);
